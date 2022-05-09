@@ -5,22 +5,16 @@ const ArticleContext = createContext();
 const ArticleProvider = ({ children }) => {
 
   const [article, setArticle] = useState({
-    // edition: "",
-    track: "",
     name: "",
     description: "",
-    image: null,
-    banner_image: null,
-    // section: "",
-    tags: "",
-    category: "",
-    home_page_display : null,
+    persons: "",
+    orgs: "",
   });
 
-  const [content, setContent] = useState("")
+  const [buttonState, setVariant] = useState("person");
 
   return (
-    <ArticleContext.Provider value={{article, setArticle, content, setContent}}>
+    <ArticleContext.Provider value={{article, setArticle, buttonState, setVariant}}>
       {children}
     </ArticleContext.Provider>
   );
