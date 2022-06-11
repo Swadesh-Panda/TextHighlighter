@@ -37,5 +37,9 @@
   }
 }
 
-.card-header {
+.grid-list{
+  border: 1px solid black;
+  height: 100%;
+  text-align: center;
+  padding: 10px;
 }

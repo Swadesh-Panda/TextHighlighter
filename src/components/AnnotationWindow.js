@@ -1,45 +1,64 @@
 import React,{ useContext,useState } from "react";
-import { Box,Button } from "@mui/material";
+import { Box,Button,Divider } from "@mui/material";
 import { ArticleContext } from "./ArticleProvider";
 
 const AnnotationWindow = () => {
-    const { article, setArticle, buttonState, setVariant } = useContext(ArticleContext);
+    const { article, setArticle, TagState, setTag } = useContext(ArticleContext);
 
-    const highlightText = () => {
+    
+    const [personList, setPersonList] = useState([])
+    const [orgList, setOrgList] = useState([])
 
-        if(buttonState == "person")
+
+    const highlightText = (e) => {
+        e.target.style.background = 'yellow';
+
+        if(TagState == "person")
         {
+            var persons = personList
+            persons.push(window.getSelection().toString())
+            setPersonList(persons)
+
             setArticle({
                 ...article,
-                persons: window.getSelection().toString(),
+                persons: personList,
               });
         }
-        else if(buttonState == "org")
+        else if(TagState == "org")
         {
+            var orgs = orgList
+            orgs.push(window.getSelection().toString())
+            setOrgList(orgs)
+
             setArticle({
                 ...article,
-                orgs: window.getSelection().toString(),
+                orgs: orgList,
               });
         }
     };
+    
+    const myHTML = `<h1>John Doe</h1>`;
 
     return(
         <Box>
             <Button 
-                variant= {buttonState == "person" ? "contained" : "outlined"} 
-                onClick={() => {setVariant("person")}}>
+                variant= {TagState == "person" ? "contained" : "outlined"} 
+                onClick={() => {setTag("person")}}>
                     Person
             </Button>
 
             <Button 
-                variant= {buttonState == "org"? "contained" : "outlined"}
-                onClick={() => {setVariant("org")}}>
+                variant= {TagState == "org"? "contained" : "outlined"}
+                onClick={() => {setTag("org")}}>
                     Org
             </Button>
+
+        <Divider />
             
             <div onMouseUp={highlightText}>
                 {article.description}
             </div>
+            <div dangerouslySetInnerHTML={{ __html: myHTML }} />
         </Box>
     );
 };

@@ -6,8 +6,8 @@ import Records from './components/Records';
 
 function App() {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={3}>
+    <Grid container columnGap={1} sx={{p:5}} justifyContent="center">
+      <Grid item xs={2} className="grid-list">
         <Records/>
       </Grid>
 
@@ -15,7 +15,7 @@ function App() {
         <AnnotationWindow/>
       </Grid>
 
-      <Grid item xs={3}>
+      <Grid item xs={3} className="grid-list">
         <AnnotationList/>
       </Grid>
     </Grid>

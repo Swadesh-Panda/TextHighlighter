@@ -4,17 +4,19 @@ const ArticleContext = createContext();
 
 const ArticleProvider = ({ children }) => {
 
+  const [articleList, SetArticleList] = useState([]);
+
   const [article, setArticle] = useState({
     name: "",
     description: "",
-    persons: "",
-    orgs: "",
+    persons: [],
+    orgs: [],
   });
 
-  const [buttonState, setVariant] = useState("person");
+  const [TagState, setTag] = useState("person");
 
   return (
-    <ArticleContext.Provider value={{article, setArticle, buttonState, setVariant}}>
+    <ArticleContext.Provider value={{article, setArticle, TagState, setTag,articleList, SetArticleList}}>
       {children}
     </ArticleContext.Provider>
   );
